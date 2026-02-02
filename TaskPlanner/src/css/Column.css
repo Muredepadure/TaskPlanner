@@ -1,0 +1,38 @@
+.column {
+  width: 320px;
+  min-width: 320px;          /* so columns don’t shrink too much */
+  background: #111827;
+  border: 1px solid #2b3648;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+.column__header {
+  padding: 12px 12px 8px;
+  border-bottom: 1px solid #2b3648;
+}
+
+.column__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.column__body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: auto;          /* later, when many cards */
+}
+
+.column__placeholder {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}

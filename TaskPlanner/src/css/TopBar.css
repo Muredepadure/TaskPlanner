@@ -1,0 +1,30 @@
+.top-bar {
+  height: 56px;
+  background-color: #1f2937; /* dark slate */
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.top-bar__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.top-bar__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #4b5563;
+}
