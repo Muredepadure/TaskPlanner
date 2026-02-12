@@ -1,28 +1,59 @@
+import { useState } from "react";
 import Column from "./Column.jsx";
+import TaskFormModal from "./TaskFormModal.jsx";
 import "../css/Board.css";
 
 function Board() {
-  const tasks = [
-    { id: "1", title: "Buy groceries", description: "Milk, eggs, bread", status: "todo" },
-    { id: "2", title: "Build Column UI", description: "Render cards inside columns", status: "inprogress" },
-    { id: "3", title: "Push to GitHub", description: "Commit and push changes", status: "done" },
-  ];
+  const [tasks, setTasks] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [activeStatus, setActiveStatus] = useState("todo")
+
+  function openModalFor(status) {
+    console.log("openModalFor called with:", status);
+    setActiveStatus(status);
+    setIsModalOpen(true);
+  }
+
+  console.log("Board render:", { isModalOpen, activeStatus, tasksCount: tasks.length });
+
+
+  function addTask(taskData) {
+    const newTask = {
+      id: crypto.randomUUID(),
+      ...taskData,
+      status: taskData.status ?? activeStatus, // keep dropdown optional
+    };
+    setTasks((prev) => [newTask, ...prev]);
+  }
 
   return (
-    <div className="board">
-      <Column
-        title="To Do"
-        tasks={tasks.filter((t) => t.status === "todo")}
+    <>
+      <TaskFormModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={addTask}
+        defaultStatus={activeStatus}
       />
-      <Column
-        title="In Progress"
-        tasks={tasks.filter((t) => t.status === "inprogress")}
-      />
-      <Column
-        title="Done"
-        tasks={tasks.filter((t) => t.status === "done")}
-      />
-    </div>
+
+      <div className="board">
+        <Column
+          title="To Do"
+          tasks={tasks.filter((t) => t.status === "todo")}
+          onAddTaskClick={() => openModalFor("todo")}
+        />
+        <Column
+          title="In Progress"
+          tasks={tasks.filter((t) => t.status === "inprogress")}
+          onAddTaskClick={() => openModalFor("inprogress")}
+        />
+        <Column
+          title="Done"
+          tasks={tasks.filter((t) => t.status === "done")}
+          onAddTaskClick={() => openModalFor("done")}
+        />
+      </div>
+    </>
   );
 }
 

@@ -1,7 +1,8 @@
 import TaskCard from "./TaskCard.jsx";
 import "../css/Column.css";
 
-function Column({ title, tasks = [] }) {
+function Column({ title, tasks = [], onAddTaskClick }) {
+
   return (
     <section className="column">
       <header className="column__header">
@@ -15,7 +16,18 @@ function Column({ title, tasks = [] }) {
           tasks.map((task) => <TaskCard key={task.id} task={task} />)
         )}
       </div>
+      <button
+        className="top-bar__add-button"
+        onClick={() => {
+          console.log("Add task clicked in column:", title);
+          onAddTaskClick?.();
+        }}
+      >
+        + Add Task
+      </button>
+
     </section>
+
   );
 }
 
