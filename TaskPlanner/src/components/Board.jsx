@@ -27,6 +27,10 @@ function Board() {
     setTasks((prev) => [newTask, ...prev]);
   }
 
+  function deleteTask(taskId) {
+    setTasks((prev) => prev.filter((t) => t.id !== taskId));
+  }
+
   return (
     <>
       <TaskFormModal
@@ -41,16 +45,19 @@ function Board() {
           title="To Do"
           tasks={tasks.filter((t) => t.status === "todo")}
           onAddTaskClick={() => openModalFor("todo")}
+          onDeleteTaskClick={deleteTask}
         />
         <Column
           title="In Progress"
           tasks={tasks.filter((t) => t.status === "inprogress")}
           onAddTaskClick={() => openModalFor("inprogress")}
+          onDeleteTaskClick={deleteTask}
         />
         <Column
           title="Done"
           tasks={tasks.filter((t) => t.status === "done")}
           onAddTaskClick={() => openModalFor("done")}
+          onDeleteTaskClick={deleteTask}
         />
       </div>
     </>

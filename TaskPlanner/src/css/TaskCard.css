@@ -8,6 +8,10 @@
   border: 1px solid #e5e7eb;
 
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px; /* optional spacing between text and button */
 }
 
 .task-card:hover {
@@ -25,4 +29,29 @@
   margin: 0;
   font-size: 0.95rem;
   color: #4b5563;
+}
+
+.delete-btn {
+  background: transparent;
+  border: 2px solid red;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  border-color: #999;
+}
+
+.delete-btn:hover img {
+  filter: grayscale(100%) brightness(60%);
+}
+
+.delete-btn img {
+  width: 20px;
+  height: 20px;
+
+  /* Turn black SVG red */
+  filter: invert(16%) sepia(97%) saturate(7461%) hue-rotate(358deg) brightness(97%) contrast(119%);
 }
