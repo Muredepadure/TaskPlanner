@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import "../css/TaskFormModal.css";
 
-function TaskFormModal({ isOpen, onClose, onSubmit, defaultStatus = "todo" }) {
+function TaskFormModal({ isOpen, onClose, onSubmit, defaultStatus = "todo", initialTask = null }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState(defaultStatus);
 
+  const isEditing = Boolean(initialTask);
+
   // When opening, reset the form and set default status
   useEffect(() => {
     if (isOpen) {
-      setTitle("");
-      setDescription("");
-      setStatus(defaultStatus);
+      setTitle(initialTask?.title || "");
+      setDescription(initialTask?.description || "");
+      setStatus(initialTask?.status || defaultStatus);
     }
   }, [isOpen, defaultStatus]);
 
@@ -68,7 +70,7 @@ function TaskFormModal({ isOpen, onClose, onSubmit, defaultStatus = "todo" }) {
               Cancel
             </button>
             <button type="submit" disabled={!title.trim()}>
-              Add Task
+              {isEditing ? "Save Changes" : "Add Task"}
             </button>
           </div>
         </form>
