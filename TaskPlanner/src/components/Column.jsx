@@ -1,7 +1,7 @@
 import TaskCard from "./TaskCard.jsx";
 import "../css/Column.css";
 
-function Column({ title, tasks = [], onAddTaskClick, onDeleteTaskClick }) {
+function Column({ title, tasks = [], onAddTaskClick, onDeleteTaskClick, onEditTaskClick }) {
 
   return (
     <section className="column">
@@ -13,7 +13,7 @@ function Column({ title, tasks = [], onAddTaskClick, onDeleteTaskClick }) {
         {tasks.length === 0 ? (
           <p className="column__placeholder">No tasks yet</p>
         ) : (
-          tasks.map((task) => <TaskCard key={task.id} task={task} onDelete={onDeleteTaskClick}/>)
+          tasks.map((task) => <TaskCard key={task.id} task={task} onDelete={onDeleteTaskClick} onEdit={onEditTaskClick}/>)
         )}
       </div>
       <button
